@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/11/18 17:18:23 by cayuso-f         ###   ########.fr       */
+/*   Created: 2024/10/02 15:46:37 by cayuso-f          #+#    #+#             */
+/*   Updated: 2024/10/02 15:50:40 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-t_list  *load_stack(int argc, char **argv);
-void    print_stack(t_list *stack);
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <unistd.h>
+# include <stdarg.h>
 
+int	ft_printf(char const *s, ...);
+int	ft_print_char(char c);
+int	ft_print_str(char *s);
+int	ft_print_nbr(int nb);
+int	ft_print_nbr_base(unsigned long nb, char *base);
+int	ft_print_ptr(unsigned long ptr);
+
+#endif

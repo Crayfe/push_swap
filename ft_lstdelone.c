@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cayuso-f <cayuso-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/11/18 17:18:23 by cayuso-f         ###   ########.fr       */
+/*   Created: 2024/09/25 13:01:51 by cayuso-f          #+#    #+#             */
+/*   Updated: 2024/10/07 11:06:12 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-t_list  *load_stack(int argc, char **argv);
-void    print_stack(t_list *stack);
-
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+	(*del)(lst->content);
+	free(lst);
+}

@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cayuso-f <cayuso-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/11/18 17:18:23 by cayuso-f         ###   ########.fr       */
+/*   Created: 2024/09/25 12:39:29 by cayuso-f          #+#    #+#             */
+/*   Updated: 2024/09/25 15:17:03 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-t_list  *load_stack(int argc, char **argv);
-void    print_stack(t_list *stack);
+int	ft_lstsize(t_list *lst)
+{
+	int		lst_len;
+	t_list	*aux_node;
 
+	lst_len = 0;
+	aux_node = lst;
+	while (aux_node)
+	{
+		aux_node = aux_node->next;
+		lst_len++;
+	}
+	return (lst_len);
+}

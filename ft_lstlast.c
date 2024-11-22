@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cayuso-f <cayuso-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/11/18 17:18:23 by cayuso-f         ###   ########.fr       */
+/*   Created: 2024/09/25 12:48:31 by cayuso-f          #+#    #+#             */
+/*   Updated: 2024/09/25 15:18:58 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-t_list  *load_stack(int argc, char **argv);
-void    print_stack(t_list *stack);
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*aux_node;
 
+	aux_node = lst;
+	while (aux_node && aux_node->next)
+		aux_node = aux_node->next;
+	return (aux_node);
+}

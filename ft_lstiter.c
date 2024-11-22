@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cayuso-f <cayuso-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/11/18 17:18:23 by cayuso-f         ###   ########.fr       */
+/*   Created: 2024/09/25 13:17:40 by cayuso-f          #+#    #+#             */
+/*   Updated: 2024/09/25 16:21:48 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-t_list  *load_stack(int argc, char **argv);
-void    print_stack(t_list *stack);
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	t_list	*aux_node;
 
+	aux_node = lst;
+	while (aux_node)
+	{
+		(*f)(aux_node->content);
+		aux_node = aux_node->next;
+	}
+}
