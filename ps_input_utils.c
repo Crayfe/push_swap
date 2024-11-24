@@ -85,16 +85,30 @@ t_list	*load_stack(int argc, char **argv)
 	return (loading_stack);
 }
 
-void	print_stack(t_list *stack)
+void	print_stacks(t_list *stack_a, t_list *stack_b)
 {
-	t_list	*aux_node;
+	t_list	*aux_a;
+	t_list	*aux_b;
 
-	aux_node = stack;
+	aux_a = stack_a;
+	aux_b = stack_b;
 	ft_printf("Init a and b:\n");
-	while (aux_node)
+	while (aux_a || aux_b)
 	{
-		ft_printf("%i\n", *(int *)aux_node->content);
-		aux_node = aux_node->next;
+		if (aux_a)
+		{
+			ft_printf("%i ", *(int *)aux_a->content);
+			aux_a = aux_a->next;
+		}
+		else
+			ft_printf("  ");
+		if (aux_b)
+		{
+			ft_printf("%i\n", *(int *)aux_b->content);
+			aux_b = aux_b->next;
+		}
+		else
+			ft_printf("\n");
 	}
 	ft_printf("_ _\n");
 	ft_printf("a b\n");

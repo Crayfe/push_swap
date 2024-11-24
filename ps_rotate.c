@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_swap.h                                          :+:      :+:    :+:   */
+/*   ps_rotate.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,35 +11,35 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	swap(t_list **stack)
+int	rotate(t_list **stack)
 {
 	t_list	*aux;
 
 	if (ft_lstsize(stack[0]) > 1)
 	{
-		aux = stack[0]->next;
-		stack[0]->next = aux->next;
-		aux->next = stack[0];
-		stack[0] = aux;
+		aux = stack[0];
+		stack[0] = stack[0]->next;
+		aux->next = 0;
+		ft_lstadd_back(stack, aux);
 		return (1);
 	}
 	return (0);
 }
 
-void	swap_a(t_list **stack_a)
+void	rotate_a(t_list **stack_a)
 {
-	if (swap(stack_a))
-		ft_printf("sa\n");
+	if (rotate(stack_a))
+		ft_printf("ra\n");
 }
 
-void	swap_b(t_list **stack_b)
+void	rotate_b(t_list **stack_b)
 {
-	if (swap(stack_b))
-		ft_printf("sb\n");
+	if (rotate(stack_b))
+		ft_printf("rb\n");
 }
 
-void	swap_a_b(t_list **stack_a, t_list **stack_b)
+void	rotate_a_b(t_list **stack_a, t_list **stack_b)
 {
-	if (swap(stack_a) || swap(stack_b))
-		ft_printf("ss\n");
+	if (rotate(stack_a) || rotate(stack_b))
+		ft_printf("rr\n");
 }
