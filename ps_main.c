@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crayfe <crayfe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/11/20 21:38:07 by crayfe           ###   ########.fr       */
+/*   Updated: 2024/11/25 11:51:37 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -45,10 +45,11 @@ int	main(int argc, char **argv)
 			return (ft_printf("Error\n"), 0);
 		else
 		{
-			//test_movements(&stack_a, &stack_b);
+			/*test_movements(&stack_a, &stack_b);
 			print_stacks(stack_a, stack_b);
+			ft_printf("Ordering...\n");*/
 			apply_algorithm(&stack_a, &stack_b);
-			print_stacks(stack_a, stack_b);
+			/*print_stacks(stack_a, stack_b);*/
 			ft_lstclear(&stack_a, free);
 			ft_lstclear(&stack_b, free);
 		}

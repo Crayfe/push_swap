@@ -6,7 +6,7 @@
 /*   By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:44:08 by cayuso-f          #+#    #+#             */
-/*   Updated: 2024/11/18 17:18:23 by cayuso-f         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:39:49 by cayuso-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -31,6 +31,8 @@ void	rev_rotate_a_b(t_list **stack_a, t_list **stack_b);
 /* In ps_stack_utils.c:      */
 int		get_stack_top(t_list *stack);
 int		get_stack_bot(t_list *stack);
+int		get_min_value_pos(t_list *stack);
+int		get_max_value_pos(t_list *stack);
 int		is_stack_ordered(t_list *stack);
 /*In ps_algorithm.c:         */
 void	apply_algorithm(t_list **stack_a, t_list **stack_b);
