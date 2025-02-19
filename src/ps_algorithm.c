@@ -22,8 +22,7 @@ void	push_a_from_pos(t_list **stack_a, t_list **stack_b, int pos)
 	}
 	push_b(stack_a, stack_b);
 }
-
-void	apply_algorithm(t_list **stack_a, t_list **stack_b)
+void	dummy_algorithm(t_list **stack_a, t_list **stack_b)
 {
 	int	pos;
 
@@ -34,4 +33,9 @@ void	apply_algorithm(t_list **stack_a, t_list **stack_b)
 	}
 	while (ft_lstsize(stack_b[0]) > 0)
 		push_a(stack_b, stack_a);
+}
+
+void	apply_algorithm(t_list **stack_a, t_list **stack_b)
+{
+	dummy_algorithm(stack_a, stack_b);
 }
