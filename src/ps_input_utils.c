@@ -54,7 +54,7 @@ int	iscontentdup(t_list *stack, long num)
 		return (1);
 	while (aux_node)
 	{
-		if (*(int *)aux_node->content == (int)num)
+		if (((t_content *)aux_node->content)->value == (int)num)
 			return (1);
 		aux_node = aux_node->next;
 	}
@@ -75,8 +75,8 @@ t_list	*load_stack(int argc, char **argv)
 		num = ft_atol(argv[i]);
 		if (!isnum(argv[i]) || !isint(num) || iscontentdup(loading_stack, num))
 			return (ft_lstclear(&loading_stack, free), (void *)0);
-		new_node = ft_lstnew(malloc(sizeof(int)));
-		*(int *)(new_node->content) = (int)num;
+		new_node = ft_lstnew(malloc(sizeof(t_content)));
+		((t_content *)new_node->content)->value = (int)num;
 		if (!loading_stack)
 			loading_stack = new_node;
 		else
@@ -97,14 +97,14 @@ void	print_stacks(t_list *stack_a, t_list *stack_b)
 	{
 		if (aux_a)
 		{
-			ft_printf("%i ", *(int *)aux_a->content);
+			ft_printf("%i ", ((t_content *)aux_a->content)->value);
 			aux_a = aux_a->next;
 		}
 		else
 			ft_printf("  ");
 		if (aux_b)
 		{
-			ft_printf("%i\n", *(int *)aux_b->content);
+			ft_printf("%i\n", ((t_content *)aux_b->content)->value);
 			aux_b = aux_b->next;
 		}
 		else

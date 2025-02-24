@@ -14,10 +14,10 @@
 void	test_movements(t_list **stack_a, t_list **stack_b)
 {
 	print_stacks(stack_a[0], stack_b[0]);
-	ft_printf("Is the stack ordered? : %i\n", is_stack_ordered(stack_a[0]));
+	ft_printf("Is the stack ordered? : %i\n", is_stack_sorted(stack_a[0], 0));
 	swap_a(stack_a);
 	print_stacks(stack_a[0], stack_b[0]);
-	ft_printf("Is the stack ordered? : %i\n", is_stack_ordered(stack_a[0]));
+	ft_printf("Is the stack ordered? : %i\n", is_stack_sorted(stack_a[0], 0));
 	push_b(stack_a, stack_b);
 	push_b(stack_a, stack_b);
 	swap_b(stack_b);
@@ -28,7 +28,7 @@ void	test_movements(t_list **stack_a, t_list **stack_b)
 	rev_rotate_a(stack_a);
 	rev_rotate_a(stack_a);
 	print_stacks(stack_a[0], stack_b[0]);
-	ft_printf("Is the stack ordered? : %i\n", is_stack_ordered(stack_a[0]));
+	ft_printf("Is the stack ordered? : %i\n", is_stack_sorted(stack_a[0], 0));
 }
 
 int	main(int argc, char **argv)
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 			print_stacks(stack_a, stack_b);
 			ft_printf("Ordering...\n");*/
 			apply_algorithm(&stack_a, &stack_b);
-			/*print_stacks(stack_a, stack_b);*/
+			print_stacks(stack_a, stack_b);
 			ft_lstclear(&stack_a, free);
 			ft_lstclear(&stack_b, free);
 		}

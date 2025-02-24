@@ -33,6 +33,11 @@ int		get_stack_top(t_list *stack);
 int		get_stack_bot(t_list *stack);
 int		get_min_value_pos(t_list *stack);
 int		get_max_value_pos(t_list *stack);
-int		is_stack_ordered(t_list *stack);
+int		is_stack_sorted(t_list *stack, int size);
 /*In ps_algorithm.c:         */
 void	apply_algorithm(t_list **stack_a, t_list **stack_b);
+typedef struct s_content
+{
+	int	value;
+	int	sorted_pos;
+}	t_content;

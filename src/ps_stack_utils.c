@@ -13,14 +13,14 @@
 
 int	get_stack_top(t_list *stack)
 {
-	return (*(int *)(stack->content));
+	return (((t_content *)stack->content)->value);
 }
 
 int	get_stack_bot(t_list *stack)
 {
 	while (stack->next)
 		stack = stack->next;
-	return (*(int *)(stack->content));
+	return (((t_content *)stack->content)->value);
 }
 
 int	get_max_value_pos(t_list *stack)
@@ -29,16 +29,16 @@ int	get_max_value_pos(t_list *stack)
 	int	max;
 	int	pos;
 
-	max = *(int *)(stack->content);
+	max = ((t_content *)stack->content)->value;
 	pos = 0;
 	i = 0;
 	while (stack->next)
 	{
 		i++;
 		stack = stack->next;
-		if (*(int *)(stack->content) > max)
+		if (((t_content *)stack->content)->value > max)
 		{
-			max = *(int *)(stack->content);
+			max = ((t_content *)stack->content)->value;
 			pos = i;
 		}
 	}
@@ -51,33 +51,45 @@ int	get_min_value_pos(t_list *stack)
 	int	min;
 	int	pos;
 
-	min = *(int *)(stack->content);
+	min = ((t_content *)stack->content)->value;
 	pos = 0;
 	i = 0;
 	while (stack->next)
 	{
 		i++;
 		stack = stack->next;
-		if (*(int *)(stack->content) < min)
+		if (((t_content *)stack->content)->value < min)
 		{
-			min = *(int *)(stack->content);
+			min = ((t_content *)stack->content)->value;
 			pos = i;
 		}
 	}
 	return (pos);
 }
 
-int	is_stack_ordered(t_list *stack)
+int	is_stack_sorted(t_list *stack, int size)
 {
 	int	value;
+	int	i;
 
-	if (ft_lstsize(stack) > 1)
+	if (ft_lstsize(stack) > 1 && size == 0)
 	{
 		while (stack->next)
 		{
-			value = *(int *)(stack->content);
+			value = ((t_content *)stack->content)->value;
 			stack = stack->next;
-			if (value > *(int *)(stack->content))
+			if (value > ((t_content *)stack->content)->value)
+				return (0);
+		}
+	}
+	else if (ft_lstsize(stack) > 1 && size > 0)
+	{
+		i = -1;
+		while (stack->next && i++ < size)
+		{
+			value = ((t_content *)stack->content)->value;
+			stack = stack->next;
+			if (value > ((t_content *)stack->content)->value)
 				return (0);
 		}
 	}
