@@ -33,6 +33,7 @@ int		get_stack_top(t_list *stack);
 int		get_stack_bot(t_list *stack);
 int		get_min_value_pos(t_list *stack);
 int		get_max_value_pos(t_list *stack);
+int		get_value_pos(int *array, int value, int size);
 int		is_stack_sorted(t_list *stack, int size);
 /*In ps_algorithm.c:         */
 void	apply_algorithm(t_list **stack_a, t_list **stack_b);

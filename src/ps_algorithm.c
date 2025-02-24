@@ -107,6 +107,7 @@ void	k_sort(t_list **stack_a, t_list **stack_b, int size)
 	int	i;
 	int	*array;
 	int	*sorted_array;
+	t_list	*aux;
 
 	(void)stack_b;
 	array = create_array(stack_a, size);
@@ -123,6 +124,23 @@ void	k_sort(t_list **stack_a, t_list **stack_b, int size)
 	ft_printf("Sorted Array:\n");
         while (i++ < size - 1)
                 ft_printf("%i\n", sorted_array[i]);
+	i = -1;
+	aux = stack_a[0];
+	while (i++ < size - 1)
+	{
+		((t_content *)aux->content)->sorted_pos = get_value_pos(sorted_array, array[i], size);
+		aux = aux->next;
+	}
+	i = -1;
+	aux = stack_a[0];
+        ft_printf("sorted pos:\n");
+        while (aux)
+	{
+                ft_printf("%i\n", ((t_content *)aux->content)->sorted_pos);
+		aux = aux->next;
+	}
+
+
 	free(array);
 	free(sorted_array);
 
