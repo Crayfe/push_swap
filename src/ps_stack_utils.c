@@ -67,18 +67,6 @@ int	get_min_value_pos(t_list *stack)
 	return (pos);
 }
 
-int get_value_pos(int *array, int value, int size)
-{
-	int i;
-
-	i = 0;
-	while(array[i] != value && i < size)
-		i++;
-	if (array[i] != value)
-		return (-1);
-	return (i);
-}
-
 int	is_stack_sorted(t_list *stack, int size)
 {
 	int	value;

@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 			print_stacks(stack_a, stack_b);
 			ft_printf("Ordering...\n");*/
 			apply_algorithm(&stack_a, &stack_b);
-			print_stacks(stack_a, stack_b);
+			//print_stacks(stack_a, stack_b);
 			ft_lstclear(&stack_a, free);
 			ft_lstclear(&stack_b, free);
 		}

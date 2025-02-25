@@ -11,54 +11,6 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	*create_array(t_list **stack, int size)
-{
-	int	i;
-	int	*array;
-	t_list	*aux;
-
-	array = (int *)malloc(sizeof(int) * size);
-	if (!array)
-		return (0);
-	aux = stack[0];
-	i = -1;
-	while (i++ < size - 1)
-	{
-		array[i] = *(int *)(aux->content);
-		aux = aux->next;
-	}
-	return (array);
-}
-
-int	*sort_array(int *array, int size)
-{
-	int	*sorted_array;
-	int	item;
-	int	i;
-	int	j;
-
-	sorted_array = (int *)malloc(sizeof(int) * size);
-        if (!sorted_array)
-                return (0);
-	i = -1;
-	while (i++ < size - 1)
-		sorted_array[i] = array[i];
-	i = 1;
-	while (i < size)
-	{
-		item = sorted_array[i];
-		j = i - 1;
-		while (j >= 0 && sorted_array[j] > item)
-		{
-			sorted_array[j + 1] = sorted_array[j];
-			j = j - 1;
-		}
-		sorted_array[j + 1] = item;
-		i++;
-	}
-	return (sorted_array);
-}
-
 void	three_sort(t_list **stack_a)
 {
 	int	pos;
@@ -101,53 +53,71 @@ void	mini_sort(t_list **stack_a, t_list **stack_b, int size)
 	while (ft_lstsize(stack_b[0]) > 0)
 		push_a(stack_b, stack_a);
 }
+int	rotate_cost(t_list **stack, int pos)
+{
+	int		i;
+	t_list	*aux;
+
+	i = 0;
+	aux = stack[0];
+	while (aux && ((t_content *)aux->content)->sorted_pos != pos)
+	{
+		aux = aux->next;
+		i++;
+	}
+	return (i);
+}
 
 void	k_sort(t_list **stack_a, t_list **stack_b, int size)
 {
+	int	k;
 	int	i;
-	int	*array;
-	int	*sorted_array;
-	t_list	*aux;
+	int	rb_cost;
+	int	rrb_cost;
 
-	(void)stack_b;
-	array = create_array(stack_a, size);
-	if (!array)
+	i = 0;
+	k = ft_sqrt(size) * 14 / 10;
+	if (!load_sorted_positions(stack_a, size))
 		return ;
-	sorted_array = sort_array(array, size);
-	if (!sorted_array)
-		return ;
-	i = -1;
-	ft_printf("Array:\n");
-	while (i++ < size - 1)
-		ft_printf("%i\n", array[i]);
-	i = -1;
-	ft_printf("Sorted Array:\n");
-        while (i++ < size - 1)
-                ft_printf("%i\n", sorted_array[i]);
-	i = -1;
-	aux = stack_a[0];
-	while (i++ < size - 1)
+	while (stack_a[0])
 	{
-		((t_content *)aux->content)->sorted_pos = get_value_pos(sorted_array, array[i], size);
-		aux = aux->next;
+		if (((t_content *)stack_a[0]->content)->sorted_pos <= i)
+		{
+			push_b(stack_a, stack_b);
+			rotate_b(stack_b);
+			i++;
+		}
+		else if (((t_content *)stack_a[0]->content)->sorted_pos <= i + k)
+		{
+			push_b(stack_a, stack_b);
+			i++;
+		}
+		else
+			rotate_a(stack_a);
 	}
-	i = -1;
-	aux = stack_a[0];
-        ft_printf("sorted pos:\n");
-        while (aux)
+	while (size - 1 >= 0)
 	{
-                ft_printf("%i\n", ((t_content *)aux->content)->sorted_pos);
-		aux = aux->next;
+		rb_cost = rotate_cost(stack_b, size - 1);
+		rrb_cost = (size + 3) - rb_cost;
+		if (rb_cost <= rrb_cost)
+		{
+			while (((t_content *)stack_b[0]->content)->sorted_pos != size - 1)
+				rotate_b(stack_b);
+			push_a(stack_b, stack_a);
+			size--;
+		}
+		else
+		{
+			while (((t_content *)stack_b[0]->content)->sorted_pos != size - 1)
+				rev_rotate_b(stack_b);
+			push_a(stack_b, stack_a);
+			size--;
+		}
 	}
-
-
-	free(array);
-	free(sorted_array);
-
 }
+
 void	apply_algorithm(t_list **stack_a, t_list **stack_b)
 {
-/*	dummy_algorithm(stack_a, stack_b);*/
 	int	size;
 
 	size = ft_lstsize(stack_a[0]);

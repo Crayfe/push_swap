@@ -35,6 +35,11 @@ int		get_min_value_pos(t_list *stack);
 int		get_max_value_pos(t_list *stack);
 int		get_value_pos(int *array, int value, int size);
 int		is_stack_sorted(t_list *stack, int size);
+/*In ps_array_utils.c        */
+int		get_value_pos(int *array, int value, int size);
+int		*create_array(t_list **stack, int size);
+int		*sort_array(int *array, int size);
+int		load_sorted_positions(t_list **stack, int size);
 /*In ps_algorithm.c:         */
 void	apply_algorithm(t_list **stack_a, t_list **stack_b);
 typedef struct s_content
