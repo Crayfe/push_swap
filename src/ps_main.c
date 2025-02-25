@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 	{
 		stack_a = load_stack(argc, argv);
 		if (!stack_a)
-			return (ft_putstr_fd("Error\n", 2), 0);
+			return (ft_putstr_fd("Error\n", 2), 1);
 		else
 		{
 			perform_sort(&stack_a, &stack_b);
