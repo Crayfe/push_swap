@@ -37,7 +37,7 @@ static	void	perform_sort(t_list **stack_a, t_list **stack_b)
 
 	size = ft_lstsize(stack_a[0]);
 	if (is_stack_sorted(stack_a[0], 0))
-		ft_putstr_fd("Error\n", 2);
+		return ;
 	else if (size == 2)
 		swap_a(stack_a);
 	else if (size == 3)
@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 	{
 		stack_a = load_stack(argc, argv);
 		if (!stack_a)
-			return (ft_printf("Error\n"), 0);
+			return (ft_putstr_fd("Error\n", 2), 0);
 		else
 		{
 			perform_sort(&stack_a, &stack_b);
