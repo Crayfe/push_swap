@@ -11,19 +11,19 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	three_sort(t_list **stack_a)
+void	three_sort(t_list **stack)
 {
 	int	pos;
 
-	pos = get_max_value_pos(stack_a[0]);
+	pos = get_max_value_pos(stack[0]);
 	if (pos == 0)
-		rotate_a(stack_a);
+		rotate_a(stack);
 	else if (pos == 1)
-		rev_rotate_a(stack_a);
+		rev_rotate_a(stack);
 	else if (pos == 2)
-		swap_a(stack_a);
-	if (!is_stack_sorted(stack_a[0], 3))
-		swap_a(stack_a);
+		swap_a(stack);
+	if (!is_stack_sorted(stack[0], 3))
+		swap_a(stack);
 }
 
 void	mini_sort(t_list **stack_a, t_list **stack_b, int size)
@@ -53,32 +53,12 @@ void	mini_sort(t_list **stack_a, t_list **stack_b, int size)
 	while (ft_lstsize(stack_b[0]) > 0)
 		push_a(stack_b, stack_a);
 }
-int	rotate_cost(t_list **stack, int pos)
-{
-	int		i;
-	t_list	*aux;
 
-	i = 0;
-	aux = stack[0];
-	while (aux && ((t_content *)aux->content)->sorted_pos != pos)
-	{
-		aux = aux->next;
-		i++;
-	}
-	return (i);
-}
-
-void	k_sort(t_list **stack_a, t_list **stack_b, int size)
+static	void	sort_to_stack_b(t_list **stack_a, t_list **stack_b, int k)
 {
-	int	k;
 	int	i;
-	int	rb_cost;
-	int	rrb_cost;
 
 	i = 0;
-	k = ft_sqrt(size) * 14 / 10;
-	if (!load_sorted_positions(stack_a, size))
-		return ;
 	while (stack_a[0])
 	{
 		if (((t_content *)stack_a[0]->content)->sorted_pos <= i)
@@ -95,9 +75,16 @@ void	k_sort(t_list **stack_a, t_list **stack_b, int size)
 		else
 			rotate_a(stack_a);
 	}
+}
+
+static	void	sort_to_stack_a(t_list **stack_a, t_list **stack_b, int size)
+{
+	int	rb_cost;
+	int	rrb_cost;
+
 	while (size - 1 >= 0)
 	{
-		rb_cost = rotate_cost(stack_b, size - 1);
+		rb_cost = get_rotate_cost(stack_b, size - 1);
 		rrb_cost = (size + 3) - rb_cost;
 		if (rb_cost <= rrb_cost)
 		{
@@ -116,19 +103,13 @@ void	k_sort(t_list **stack_a, t_list **stack_b, int size)
 	}
 }
 
-void	apply_algorithm(t_list **stack_a, t_list **stack_b)
+void	k_sort(t_list **stack_a, t_list **stack_b, int size)
 {
-	int	size;
+	int	k;
 
-	size = ft_lstsize(stack_a[0]);
-	if (is_stack_sorted(stack_a[0], 0))
-		ft_printf("\n");
-	else if (size == 2)
-		swap_a(stack_a);
-	else if (size == 3)
-		three_sort(stack_a);
-	else if (size <= 7)
-		mini_sort(stack_a, stack_b, size);
-	else
-		k_sort(stack_a, stack_b, size);
+	k = ft_sqrt(size) * 14 / 10;
+	if (!load_sorted_positions(stack_a, size))
+		return ;
+	sort_to_stack_b(stack_a, stack_b, k);
+	sort_to_stack_a(stack_a, stack_b, size);
 }

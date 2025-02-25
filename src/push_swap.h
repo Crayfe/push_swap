@@ -29,19 +29,19 @@ void	rev_rotate_a(t_list **stack_a);
 void	rev_rotate_b(t_list **stack_b);
 void	rev_rotate_a_b(t_list **stack_a, t_list **stack_b);
 /* In ps_stack_utils.c:      */
-int		get_stack_top(t_list *stack);
-int		get_stack_bot(t_list *stack);
 int		get_min_value_pos(t_list *stack);
 int		get_max_value_pos(t_list *stack);
-int		get_value_pos(int *array, int value, int size);
+int		get_rotate_cost(t_list **stack, int pos);
 int		is_stack_sorted(t_list *stack, int size);
 /*In ps_array_utils.c        */
 int		get_value_pos(int *array, int value, int size);
 int		*create_array(t_list **stack, int size);
 int		*sort_array(int *array, int size);
 int		load_sorted_positions(t_list **stack, int size);
-/*In ps_algorithm.c:         */
-void	apply_algorithm(t_list **stack_a, t_list **stack_b);
+/*In ps_sort.c:         */
+void	three_sort(t_list **stack);
+void	mini_sort(t_list **stack_a, t_list **stack_b, int size);
+void	k_sort(t_list **stack_a, t_list **stack_b, int size);
 typedef struct s_content
 {
 	int	value;

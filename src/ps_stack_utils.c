@@ -11,18 +11,6 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	get_stack_top(t_list *stack)
-{
-	return (((t_content *)stack->content)->value);
-}
-
-int	get_stack_bot(t_list *stack)
-{
-	while (stack->next)
-		stack = stack->next;
-	return (((t_content *)stack->content)->value);
-}
-
 int	get_max_value_pos(t_list *stack)
 {
 	int	i;
@@ -65,6 +53,21 @@ int	get_min_value_pos(t_list *stack)
 		}
 	}
 	return (pos);
+}
+
+int	get_rotate_cost(t_list **stack, int pos)
+{
+	int		i;
+	t_list	*aux;
+
+	i = 0;
+	aux = stack[0];
+	while (aux && ((t_content *)aux->content)->sorted_pos != pos)
+	{
+		aux = aux->next;
+		i++;
+	}
+	return (i);
 }
 
 int	is_stack_sorted(t_list *stack, int size)

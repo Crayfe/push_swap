@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
+/*
 void	test_movements(t_list **stack_a, t_list **stack_b)
 {
 	print_stacks(stack_a[0], stack_b[0]);
@@ -30,6 +30,23 @@ void	test_movements(t_list **stack_a, t_list **stack_b)
 	print_stacks(stack_a[0], stack_b[0]);
 	ft_printf("Is the stack ordered? : %i\n", is_stack_sorted(stack_a[0], 0));
 }
+*/
+static	void	perform_sort(t_list **stack_a, t_list **stack_b)
+{
+	int	size;
+
+	size = ft_lstsize(stack_a[0]);
+	if (is_stack_sorted(stack_a[0], 0))
+		ft_printf("\n");
+	else if (size == 2)
+		swap_a(stack_a);
+	else if (size == 3)
+		three_sort(stack_a);
+	else if (size <= 7)
+		mini_sort(stack_a, stack_b, size);
+	else
+		k_sort(stack_a, stack_b, size);
+}
 
 int	main(int argc, char **argv)
 {
@@ -45,11 +62,7 @@ int	main(int argc, char **argv)
 			return (ft_printf("Error\n"), 0);
 		else
 		{
-			/*test_movements(&stack_a, &stack_b);
-			print_stacks(stack_a, stack_b);
-			ft_printf("Ordering...\n");*/
-			apply_algorithm(&stack_a, &stack_b);
-			//print_stacks(stack_a, stack_b);
+			perform_sort(&stack_a, &stack_b);
 			ft_lstclear(&stack_a, free);
 			ft_lstclear(&stack_b, free);
 		}
