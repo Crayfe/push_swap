@@ -9,7 +9,7 @@
 /*   Updated: 2024/11/20 21:38:07 by crayfe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	isnum(char *s)
 {
