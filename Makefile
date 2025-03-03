@@ -1,26 +1,23 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: cayuso-f <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/25 16:58:10 by cayuso-f          #+#    #+#              #
-#    Updated: 2025/01/28 16:57:50 by cayuso-f         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+
 LIBFT_DIR = libft
 SRC_DIR = src
 OBJ_DIR = obj
+BONUS_SRC_DIR = src_bonus
+BONUS_OBJ_DIR = src_bonus
 
 # Archivos fuente y objetos
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
+BONUS_SRCS = $(wildcard $(BONUS_SRC_DIR)/*.c)
+BONUS_OBJS = $(patsubst $(BONUS_SRC_DIR)/%.c,$(BONUS_OBJ_DIR)/%.o,$(BONUS_SRCS))
+
 # Nombre del ejecutable
 NAME = push_swap
+BONUS_NAME = checker
 
 # Regla por defecto (compilar el ejecutable)
 all: $(NAME)
@@ -48,9 +45,18 @@ clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
 	$(MAKE) fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# Nueva regla para compilar el bonus (checker)
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(BONUS_OBJS) $(LIBFT_DIR)/libft.a
+	$(CC) $(CFLAGS) -o $@ $^ -L $(LIBFT_DIR) -lft
+
+$(OBJ_DIR)/%.o: $(BONUS_SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I $(LIBFT_DIR) -c $< -o $@
+
+.PHONY: all clean fclean re bonus
