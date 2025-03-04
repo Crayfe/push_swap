@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	isnum(char *s)
+static	int	isnum(char *s)
 {
 	int	i;
 	int	num;
@@ -37,7 +37,7 @@ int	isnum(char *s)
 	return (num);
 }
 
-int	isint(long num)
+static	int	isint(long num)
 {
 	if (num >= -2147483648 && num <= 2147483647)
 		return (1);
@@ -45,7 +45,7 @@ int	isint(long num)
 		return (0);
 }
 
-int	iscontentdup(t_list *stack, long num)
+static	int	iscontentdup(t_list *stack, long num)
 {
 	t_list	*aux_node;
 
@@ -61,55 +61,40 @@ int	iscontentdup(t_list *stack, long num)
 	return (0);
 }
 
+static	int	numcheckandload(t_list **loading_stack, char *str)
+{
+	long	num;
+	t_list	*new_node;
+
+	num = ft_atol(str);
+	if (!isnum(str) || !isint(num) || iscontentdup(loading_stack[0], num))
+		return (ft_lstclear(loading_stack, free), 0);
+	new_node = ft_lstnew(malloc(sizeof(t_content)));
+	((t_content *)new_node->content)->value = (int)num;
+	if (!loading_stack[0])
+		loading_stack[0] = new_node;
+	else
+		ft_lstadd_back(loading_stack, new_node);
+	return (1);
+}
+
 t_list	*load_stack(int argc, char **argv)
 {
 	int		i;
-	long	num;
-	t_list	*new_node;
+	int		j;
 	t_list	*loading_stack;
+	char	**split;
 
 	i = 0;
 	loading_stack = 0;
 	while (i++ < argc -1)
 	{
-		num = ft_atol(argv[i]);
-		if (!isnum(argv[i]) || !isint(num) || iscontentdup(loading_stack, num))
-			return (ft_lstclear(&loading_stack, free), (void *)0);
-		new_node = ft_lstnew(malloc(sizeof(t_content)));
-		((t_content *)new_node->content)->value = (int)num;
-		if (!loading_stack)
-			loading_stack = new_node;
-		else
-			ft_lstadd_back(&loading_stack, new_node);
+		split = ft_split(argv[i], ' ');
+		j = 0;
+		while (split[j])
+			if (!numcheckandload(&loading_stack, split[j++]))
+				return (free_2d_str(split), (void *)0);
+		free_2d_str(split);
 	}
 	return (loading_stack);
-}
-
-void	print_stacks(t_list *stack_a, t_list *stack_b)
-{
-	t_list	*aux_a;
-	t_list	*aux_b;
-
-	aux_a = stack_a;
-	aux_b = stack_b;
-	ft_printf("Init a and b:\n");
-	while (aux_a || aux_b)
-	{
-		if (aux_a)
-		{
-			ft_printf("%i ", ((t_content *)aux_a->content)->value);
-			aux_a = aux_a->next;
-		}
-		else
-			ft_printf("  ");
-		if (aux_b)
-		{
-			ft_printf("%i\n", ((t_content *)aux_b->content)->value);
-			aux_b = aux_b->next;
-		}
-		else
-			ft_printf("\n");
-	}
-	ft_printf("_ _\n");
-	ft_printf("a b\n");
 }

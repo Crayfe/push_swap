@@ -12,7 +12,6 @@
 #include "../libft/src/libft.h"
 /* In ps_input_utils.c       */
 t_list	*load_stack(int argc, char **argv);
-void	print_stacks(t_list *stack_a, t_list *stack_b);
 /* In ps_swap.c:             */
 void	swap_a(t_list **stack_a);
 void	swap_b(t_list **stack_b);
@@ -33,6 +32,7 @@ int		get_min_value_pos(t_list *stack);
 int		get_max_value_pos(t_list *stack);
 int		get_rotate_cost(t_list **stack, int pos);
 int		is_stack_sorted(t_list *stack, int size);
+void	print_stacks(t_list *stack_a, t_list *stack_b);
 /*In ps_array_utils.c        */
 int		get_value_pos(int *array, int value, int size);
 int		*create_array(t_list **stack, int size);

@@ -98,3 +98,32 @@ int	is_stack_sorted(t_list *stack, int size)
 	}
 	return (1);
 }
+
+void	print_stacks(t_list *stack_a, t_list *stack_b)
+{
+	t_list	*aux_a;
+	t_list	*aux_b;
+
+	aux_a = stack_a;
+	aux_b = stack_b;
+	ft_printf("Init a and b:\n");
+	while (aux_a || aux_b)
+	{
+		if (aux_a)
+		{
+			ft_printf("%i ", ((t_content *)aux_a->content)->value);
+			aux_a = aux_a->next;
+		}
+		else
+			ft_printf("  ");
+		if (aux_b)
+		{
+			ft_printf("%i\n", ((t_content *)aux_b->content)->value);
+			aux_b = aux_b->next;
+		}
+		else
+			ft_printf("\n");
+	}
+	ft_printf("_ _\n");
+	ft_printf("a b\n");
+}
