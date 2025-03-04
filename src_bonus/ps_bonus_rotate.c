@@ -28,18 +28,16 @@ int	rotate(t_list **stack)
 
 void	rotate_a(t_list **stack_a)
 {
-	if (rotate(stack_a))
-		;
+	rotate(stack_a);
 }
 
 void	rotate_b(t_list **stack_b)
 {
-	if (rotate(stack_b))
-		;
+	rotate(stack_b);
 }
 
 void	rotate_a_b(t_list **stack_a, t_list **stack_b)
 {
-	if (rotate(stack_a) || rotate(stack_b))
-		;
+	rotate(stack_a);
+	rotate(stack_b);
 }

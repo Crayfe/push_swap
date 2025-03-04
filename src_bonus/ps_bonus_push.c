@@ -27,12 +27,10 @@ int	push(t_list **stack_src, t_list **stack_dst)
 
 void	push_a(t_list **stack_b, t_list **stack_a)
 {
-	if (push(stack_b, stack_a))
-		;
+	push(stack_b, stack_a);
 }
 
 void	push_b(t_list **stack_a, t_list **stack_b)
 {
-	if (push(stack_a, stack_b))
-		;
+	push(stack_a, stack_b);
 }

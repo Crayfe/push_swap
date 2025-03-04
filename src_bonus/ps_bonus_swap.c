@@ -28,18 +28,16 @@ int	swap(t_list **stack)
 
 void	swap_a(t_list **stack_a)
 {
-	if (swap(stack_a))
-		;
+	swap(stack_a);
 }
 
 void	swap_b(t_list **stack_b)
 {
-	if (swap(stack_b))
-		;
+	swap(stack_b);
 }
 
 void	swap_a_b(t_list **stack_a, t_list **stack_b)
 {
-	if (swap(stack_a) || swap(stack_b))
-		;
+	swap(stack_a);
+	swap(stack_b);
 }
