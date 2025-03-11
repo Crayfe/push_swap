@@ -90,6 +90,8 @@ t_list	*load_stack(int argc, char **argv)
 	while (i++ < argc -1)
 	{
 		split = ft_split(argv[i], ' ');
+		if (!split[0])
+			return (free_2d_str(split), (void *)0);
 		j = 0;
 		while (split[j])
 			if (!numcheckandload(&loading_stack, split[j++]))
