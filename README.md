@@ -1,14 +1,13 @@
 # PUSH\_SWAP
+[Español](README.md) | [English](README.en.md)
 | 42 Project| Descripción |
 | ----------- | ----------- |
 | <a href=""> <img src="https://github.com/0bvim/42-project-badges/blob/main/badges/push_swape.png?raw=true" /></a> | Push_swap es un proyecto de algoritmia desarrollado en C que tiene como objetivo ordenar un conjunto de números enteros en un stack a utilizando un conjunto limitado de instrucciones y optimizando el número de movimientos. Para lograrlo, se debe implementar un algoritmo eficiente que genere la secuencia más corta posible de operaciones de ordenación.|
 
 ## 🎯 Objetivo 
-
 El objetivo principal de este proyecto es desarrollar un programa llamado `push_swap` que reciba una lista de números enteros como argumentos y genere la secuencia más corta de instrucciones para ordenar esos números en orden ascendente. Este ejercicio no solo refuerza conceptos fundamentales sobre algoritmos de ordenamiento, sino que también introduce al desarrollador a la complejidad algorítmica.
 
 ## ⚙️ Funcionamiento del Programa
-
 El programa recibe como argumento una lista de números enteros que se cargará en el **stack a**. Un paso previo a la carga de números consite en procesar la entrada de datos numéricos y asegurarse de que sean válidos para su ordenación. A partir de aquí, el objetivo es ordenarlos de menor a mayor utilizando las siguientes operaciones:
 
 | Instrucción | Descripción                                              |
@@ -28,7 +27,6 @@ El programa recibe como argumento una lista de números enteros que se cargará 
 El programa imprime en salida estándar la secuencia de operaciones necesaria para ordenar la lista.
 
 ## Implementación
-
 Para la implementación del proyecto, se utilizó la estructura original de listas enlazadas desarrollada en el proyecto **libft**. Se creó un nuevo struct llamado `t_content`, que almacena un valor entero a ordenar y otro entero que indica la posición en la que debería estar dicho número una vez que la lista esté ordenada:
 ```c
 typedef struct s_content
@@ -88,7 +86,6 @@ Según el propósito y utilidad de cada función se han organizado en diferentes
 
 ##  Evaluación y Rendimiento
 Para aprobar el proyecto se deben cumplir los siguientes criterios de eficiencia:
-
 - **Ordenar 100 números en menos de 700 operaciones.** ✅
 - **Ordenar 500 números en menos de 5500 operaciones.** ✅
 
